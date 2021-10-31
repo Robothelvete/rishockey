@@ -20,7 +20,7 @@ namespace rishockey.App_Start
 			foreach (LeagueGames league in leagueGames.OrderBy(l => sortOrderByLeage(l.League))) {
 				sb.AppendFormat("**{0}**\n\n", league.League);
 				sb.AppendLine("|Lag | Tid|");
-				sb.AppendLine("|:-|-:|");
+				sb.AppendLine("|:-|:-|");
 				foreach(Game game in league.Games) {
 					sb.AppendFormat("|{0} | {1}|\n",game.Lag.Trim(), game.Tid.ToString("HH:mm"));
 				}
