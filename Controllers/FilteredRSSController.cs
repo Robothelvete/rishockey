@@ -23,6 +23,11 @@ namespace rishockey.Controllers
 				//filter it for SHL/HA/HE
 				if (!InvolvesSwedishTeam(item.SelectSingleNode("description").InnerText)) {
 					item.ParentNode.RemoveChild(item);
+				} else {
+					var pubDate = item.SelectSingleNode("pubDate");
+					var origDate = DateTime.ParseExact(pubDate.InnerText, "ddd, d MMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
+					var guid = item.SelectSingleNode("guid").InnerText;
+					pubDate.InnerText = origDate.AddSeconds(int.Parse(guid.Replace("https://eliteprospects.com/t/", "")) % 86400).ToString("R");
 				}
 			}
 
