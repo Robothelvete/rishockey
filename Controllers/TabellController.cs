@@ -13,13 +13,13 @@ namespace rishockey.Controllers
     {
       [Route("domare/tabell/{tableName}"), HttpGet]
       public HttpResponseMessage getTabellMarkdown(string tableName) {
-         var standings = StandingsParser.StandingsFromHtml(StandingsParser.FetchStandingsHtml(StandingsParser.mapLeagueToSifID[tableName]));
+         var standings = StandingsParser.StandingsFromHtml(StandingsParser.FetchStandingsHtml(ParserServices.mapLeagueToSifID[tableName]));
          StringBuilder sb = new StringBuilder();
 
-         sb.AppendLine("|Rank|Lag|Poäng|Poängsnitt|");
-         sb.AppendLine("|:-|:-|:-|:-|");
+         sb.AppendLine("|Rank|Lag|GP|Poäng|Poängsnitt|");
+         sb.AppendLine("|:-|:-|:-|:-|:-|");
          foreach(var row in standings) {
-            sb.AppendFormat("{0}|{1}|{2}|{3}|", row.Rank, row.Team, row.Points, row.pointsAverage.ToString("g3", System.Globalization.CultureInfo.InvariantCulture));
+            sb.AppendFormat("{0}|{1}|{2}|{3}|{4}|", row.Rank, row.Team, row.GamesPlayed, row.Points, row.pointsAverage.ToString("g3", System.Globalization.CultureInfo.InvariantCulture));
             sb.AppendLine();
 			}
 
@@ -32,7 +32,7 @@ namespace rishockey.Controllers
       public HttpResponseMessage listTabeller() {
          StringBuilder sb = new StringBuilder();
          sb.AppendLine("<html><head><title>Tabeller</title></head><body><ul>");
-         foreach(var league in StandingsParser.mapLeagueToSifID.Keys) {
+         foreach(var league in ParserServices.mapLeagueToSifID.Keys) {
             sb.AppendFormat("<li><a href=\"/domare/tabell/{0}\">{0}</a></li>", league);
 			}
          sb.AppendLine("</ul></body></html>");

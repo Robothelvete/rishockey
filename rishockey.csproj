@@ -91,6 +91,7 @@
     <Compile Include="Controllers\RedirectController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\FilteredRSSController.cs" />
+    <Compile Include="Controllers\ScoringController.cs" />
     <Compile Include="Controllers\TabellController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
