@@ -19,7 +19,7 @@ namespace rishockey.Controllers
          sb.AppendLine("|Rank|Lag|GP|Poäng|Poängsnitt|");
          sb.AppendLine("|:-|:-|:-|:-|:-|");
          foreach(var row in standings) {
-            sb.AppendFormat("{0}|{1}|{2}|{3}|{4}|", row.Rank, row.Team, row.GamesPlayed, row.Points, row.pointsAverage.ToString("g3", System.Globalization.CultureInfo.InvariantCulture));
+            sb.AppendFormat("{0}|{1}|{2}|{3}|{4}|", row.Rank, row.Team, row.GamesPlayed, row.Points, row.pointsAverage.ToString("f2", System.Globalization.CultureInfo.InvariantCulture));
             sb.AppendLine();
 			}
 

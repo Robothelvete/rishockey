@@ -20,7 +20,7 @@ namespace rishockey.Controllers
 			sb.AppendLine("|Lag|Namn|GP|G|A|P|Avg|");
 			sb.AppendLine("|:-|:-|:-|:-|:-|:-|:-|");
 			foreach (var stat in scoringStats) {
-				sb.AppendFormat("{0}|{1}|{2}|{3}|{4}|{5}|{6}|", stat.Team, stat.Name, stat.GamesPlayed, stat.Goals, stat.Assists, stat.Points, stat.AveragePoints.ToString("g3", System.Globalization.CultureInfo.InvariantCulture));
+				sb.AppendFormat("{0}|{1}|{2}|{3}|{4}|{5}|{6}|", stat.Team, stat.Name, stat.GamesPlayed, stat.Goals, stat.Assists, stat.Points, stat.AveragePoints.ToString("f2", System.Globalization.CultureInfo.InvariantCulture));
 				sb.AppendLine();
 			}
 
