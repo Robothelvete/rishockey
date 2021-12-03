@@ -75,7 +75,7 @@ namespace rishockey.App_Start
 			if(order.Contains(league)) {
 				return Array.IndexOf(order, league);
 			} else {
-				return league.Length + 2;
+				return order.Length + 2;
 			}
 		}
 	}
