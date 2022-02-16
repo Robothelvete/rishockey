@@ -38,16 +38,16 @@ namespace rishockey.Controllers
 
 		bool InvolvesSwedishTeam(string description) {
 			foreach (string team in SHLTeams.Keys) {
-				if (description.Contains(team)) { return true; }
+				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
 			foreach (string team in AllsvenskanTeams.Keys) {
-				if (description.Contains(team)) { return true; }
+				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
 			foreach (string team in HockeyEttanTeams.Keys) {
-				if (description.Contains(team)) { return true; }
+				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
 			foreach (string team in SDHLTeams.Keys) {
-				if (description.Contains(team)) { return true; }
+				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
 			return false;
 		}
