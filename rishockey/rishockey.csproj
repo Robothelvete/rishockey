@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Reference Include="swehockeyParser">
-      <HintPath>..\..\sweHockeyToIcalJSON\swehockeyParser\bin\Debug\net8.0\swehockeyParser.dll</HintPath>
+      <HintPath>..\..\sweHockeyToIcalJSON\swehockeyParser\bin\Release\net8.0\debug\swehockeyParser.dll</HintPath>
     </Reference>
   </ItemGroup>
 

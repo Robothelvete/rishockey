@@ -9,9 +9,9 @@ namespace rishockey.Controllers
 	public class MatchtrådController : ControllerBase
 	{
 		[Route("domare/matchtrad/"), HttpGet]
-		public HttpResponseMessage getCurrentMatchtrad()
+		public async Task<HttpResponseMessage> getCurrentMatchtrad()
 		{
-			var leagueGames = ScheduleParser.GamesScheduleFromDailyHtml(ScheduleParser.FetchScheduleHtml());
+			var leagueGames = ScheduleParser.GamesScheduleFromDailyHtml(await ScheduleParser.FetchScheduleHtml());
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("##DAGENS MATCHER");
 
