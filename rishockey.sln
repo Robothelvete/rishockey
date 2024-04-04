@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31727.386
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rishockey", "rishockey.csproj", "{D397C3FF-C18D-450B-AFC9-78FFD6D1576C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rishockey", "rishockey\rishockey.csproj", "{72029F0C-FF41-4601-AD56-3A159B73B352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D397C3FF-C18D-450B-AFC9-78FFD6D1576C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D397C3FF-C18D-450B-AFC9-78FFD6D1576C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D397C3FF-C18D-450B-AFC9-78FFD6D1576C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D397C3FF-C18D-450B-AFC9-78FFD6D1576C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72029F0C-FF41-4601-AD56-3A159B73B352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72029F0C-FF41-4601-AD56-3A159B73B352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72029F0C-FF41-4601-AD56-3A159B73B352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72029F0C-FF41-4601-AD56-3A159B73B352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {375F4BC2-E2C3-4ABE-8418-1E33AFBC23BA}
+		SolutionGuid = {B0293E28-D54D-4364-81E3-4848C7B96276}
 	EndGlobalSection
 EndGlobal

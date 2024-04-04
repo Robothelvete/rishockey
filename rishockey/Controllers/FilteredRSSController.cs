@@ -1,29 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 using System.Xml;
 
 namespace rishockey.Controllers
 {
-	public class FilteredRSSController : ApiController
+	[ApiController]
+	public class FilteredRSSController : ControllerBase
 	{
 		[Route("transfers")]
 
-		public HttpResponseMessage Get() {
+		public HttpResponseMessage Get()
+		{
 			//fetch https://www.eliteprospects.com/rss_confirmed-transfers.php
 			XmlReader reader = XmlReader.Create("https://www.eliteprospects.com/rss_confirmed-transfers.php");
 			XmlDocument doc = new XmlDocument();
 			doc.Load(reader);
 			reader.Close();
 			var items = doc.DocumentElement.SelectNodes("/rss/channel/item");
-			foreach (XmlNode item in items) {
+			foreach (XmlNode item in items)
+			{
 				//filter it for SHL/HA/HE
-				if (!InvolvesSwedishTeam(item.SelectSingleNode("description").InnerText)) {
+				if (!InvolvesSwedishTeam(item.SelectSingleNode("description").InnerText))
+				{
 					item.ParentNode.RemoveChild(item);
-				} else {
+				} else
+				{
 					var pubDate = item.SelectSingleNode("pubDate");
 					var origDate = DateTime.ParseExact(pubDate.InnerText, "ddd, d MMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
 					var guid = item.SelectSingleNode("guid").InnerText;
@@ -36,17 +37,22 @@ namespace rishockey.Controllers
 		}
 
 
-		bool InvolvesSwedishTeam(string description) {
-			foreach (string team in SHLTeams.Keys) {
+		bool InvolvesSwedishTeam(string description)
+		{
+			foreach (string team in SHLTeams.Keys)
+			{
 				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
-			foreach (string team in AllsvenskanTeams.Keys) {
+			foreach (string team in AllsvenskanTeams.Keys)
+			{
 				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
-			foreach (string team in HockeyEttanTeams.Keys) {
+			foreach (string team in HockeyEttanTeams.Keys)
+			{
 				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
-			foreach (string team in SDHLTeams.Keys) {
+			foreach (string team in SDHLTeams.Keys)
+			{
 				if (description.Contains(team) && description.Contains("https://www.eliteprospects.com" + team)) { return true; }
 			}
 			return false;
