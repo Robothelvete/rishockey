@@ -10,7 +10,7 @@ namespace rishockey.Controllers
 	public class ScoringController : ControllerBase
 	{
 		[Route("domare/poang/{tableName}"), HttpGet]
-		public HttpResponseMessage getPoängMarkdown(string tableName)
+		public async Task<ActionResult> getPoängMarkdown(string tableName)
 		{
 			var scoringStats = ScoringParser.ScoringLeadersFromHtml(ScoringParser.FetchScoringHtml(ParserServices.mapLeagueToSifID[tableName]));
 			StringBuilder sb = new StringBuilder();
@@ -23,14 +23,15 @@ namespace rishockey.Controllers
 				sb.AppendLine();
 			}
 
-			return new HttpResponseMessage(HttpStatusCode.OK)
+			return new ContentResult
 			{
-				Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/plain")
+				Content = sb.ToString(),
+				ContentType = "text/plain; charset=utf-8"
 			};
 		}
 
 		[Route("domare/poang/"), HttpGet]
-		public HttpResponseMessage listPoangTabeller()
+		public async Task<ActionResult> listPoangTabeller()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("<html><head><title>Poängledare</title></head><body><ul>");
@@ -39,9 +40,10 @@ namespace rishockey.Controllers
 				sb.AppendFormat("<li><a href=\"/domare/poang/{0}\">{0}</a></li>", league);
 			}
 			sb.AppendLine("</ul></body></html>");
-			return new HttpResponseMessage(HttpStatusCode.OK)
+			return new ContentResult
 			{
-				Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/html")
+				Content = sb.ToString(),
+				ContentType = "text/html; charset=utf-8"
 			};
 		}
 	}

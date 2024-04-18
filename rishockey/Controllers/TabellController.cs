@@ -10,7 +10,7 @@ namespace rishockey.Controllers
 	public class TabellController : ControllerBase
 	{
 		[Route("domare/tabell/{tableName}"), HttpGet]
-		public HttpResponseMessage getTabellMarkdown(string tableName)
+		public async Task<ActionResult> getTabellMarkdown(string tableName)
 		{
 			try
 			{
@@ -25,21 +25,19 @@ namespace rishockey.Controllers
 					sb.AppendLine();
 				}
 
-				return new HttpResponseMessage(HttpStatusCode.OK)
+				return new ContentResult
 				{
-					Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/plain")
+					Content = sb.ToString(),
+					ContentType = "text/plain; charset=utf-8"
 				};
 			} catch (Exception ex)
 			{
-				return new HttpResponseMessage(HttpStatusCode.NotImplemented)
-				{ //can happen .e.g. when trying to view a table of playoffs
-					Content = new StringContent("Sorry, this doesn't work", Encoding.UTF8, "text/plain")
-				};
+				return this.Problem("Sorry, this doesn't work");
 			}
 		}
 
 		[Route("domare/tabell/"), HttpGet]
-		public HttpResponseMessage listTabeller()
+		public async Task<ActionResult> listTabeller()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("<html><head><title>Tabeller</title></head><body><ul>");
@@ -48,9 +46,10 @@ namespace rishockey.Controllers
 				sb.AppendFormat("<li><a href=\"/domare/tabell/{0}\">{0}</a></li>", league);
 			}
 			sb.AppendLine("</ul></body></html>");
-			return new HttpResponseMessage(HttpStatusCode.OK)
+			return new ContentResult
 			{
-				Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/html")
+				Content = sb.ToString(),
+				ContentType = "text/html; charset=utf-8"
 			};
 		}
 

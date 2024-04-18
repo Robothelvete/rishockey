@@ -11,9 +11,6 @@ namespace rishockey.Controllers
 		public async Task<ActionResult> Get()
 		{
 			return this.RedirectPermanent("https://www.reddit.com/r/Ishockey/");
-			//var response = Request.CreateResponse(HttpStatusCode.MovedPermanently);
-			//response.Headers.Location = new Uri("https://www.reddit.com/r/Ishockey/");
-			//return response;
 		}
 	}
 }

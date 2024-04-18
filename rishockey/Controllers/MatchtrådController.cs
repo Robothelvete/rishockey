@@ -5,11 +5,12 @@ using System.Text;
 using SweHockey;
 
 namespace rishockey.Controllers
-{	[ApiController]
+{
+	[ApiController]
 	public class MatchtrådController : ControllerBase
 	{
 		[Route("domare/matchtrad/"), HttpGet]
-		public async Task<HttpResponseMessage> getCurrentMatchtrad()
+		public async Task<ActionResult> getCurrentMatchtrad()
 		{
 			var leagueGames = ScheduleParser.GamesScheduleFromDailyHtml(await ScheduleParser.FetchScheduleHtml());
 			StringBuilder sb = new StringBuilder();
@@ -27,15 +28,16 @@ namespace rishockey.Controllers
 				sb.AppendLine("\n___");
 			}
 
-			return new HttpResponseMessage(HttpStatusCode.OK)
+			return new ContentResult
 			{
-				Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/plain")
+				Content = sb.ToString(),
+				ContentType = "text/plain; charset=utf-8"
 			};
 		}
 
 
 		[Route("domare/eftermatchtrad/"), HttpGet]
-		public HttpResponseMessage getCurrentEfterMatchtrad()
+		public async Task<ActionResult> getCurrentEfterMatchtrad()
 		{
 			var leagueGames = ResultsParser.GamesResultsFromHtml(ResultsParser.FetchResultsHtml());
 			StringBuilder sb = new StringBuilder();
@@ -53,9 +55,10 @@ namespace rishockey.Controllers
 				sb.AppendLine("\n___");
 			}
 
-			return new HttpResponseMessage(HttpStatusCode.OK)
+			return new ContentResult
 			{
-				Content = new StringContent(sb.ToString(), Encoding.UTF8, "text/plain")
+				Content = sb.ToString(),
+				ContentType = "text/plain; charset=utf-8"
 			};
 		}
 
